@@ -52,7 +52,8 @@ while True:
     if supply[minRow] == demand[minCol]:
         sol += demand[minCol] * opTable[minRow][minCol]
         print("%d * %d"%(demand[minCol],opTable[minRow][minCol]))
-        demand[minCol],supply[minRow] = 0,0
+        demand.pop(minCol)
+        supply.pop(minRow)
         opTable.pop(minRow)
         for i in range(len(opTable)):
             opTable[i].pop(minCol)
@@ -60,14 +61,14 @@ while True:
         sol += demand[minCol] * opTable[minRow][minCol]
         print("%d * %d"%(demand[minCol],opTable[minRow][minCol]))
         supply[minRow] -= demand[minCol]
-
+        demand.pop(minCol)
         for i in range(len(opTable)):
             opTable[i].pop(minCol)
     else:
         sol += supply[minRow] * opTable[minRow][minCol]
         print("%d * %d"%(supply[minCol],opTable[minRow][minCol]))
         demand[minCol] -= supply[minRow]
-        
+        supply.pop(minRow)
         opTable.pop(minRow)
         
 
