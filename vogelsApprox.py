@@ -15,6 +15,7 @@ def setPenalty(tb):
         min1, min2 = col[0], col[1]
         colPen.append(min2-min1)
     return rowPen, colPen
+
 def findIndex(row, col, tb):
     if max(row) >= max(col):
         i = row.index(max(row))
@@ -62,6 +63,31 @@ if sum(supply) != sum(demand):
             row.append(0)
         transTable.append(row)
         r += 1
-opTable = transTable
+opTable, sol = transTable, 0
 while True:
+    if len(opTable) == 0:
+        break
     rowPen, colPen = setPenalty(opTable)
+    rowIndex, colIndex = findIndex(rowPen, colPen, opTable)
+    if supply[rowIndex] == demand[colIndex]:
+        sol += demand[colIndex] * transTable[rowIndex][colIndex]
+        print("%d * %d"%(demand[colIndex],transTable[rowIndex][colIndex]))
+        demand.pop(colIndex)
+        supply.pop(rowIndex)
+        opTable.pop(rowIndex)
+        for i in range(len(opTable)):
+            opTable[i].pop(colIndex)
+    elif supply[rowIndex] > demand[colIndex]:
+        sol += demand[colIndex] * transTable[rowIndex][colIndex]
+        print("%d * %d"%(demand[colIndex],transTable[rowIndex][colIndex]))
+        supply[rowIndex] -= demand[colIndex]
+        demand.pop(colIndex) 
+        for i in range(len(opTable)):
+            opTable[i].pop(colIndex)
+    else:
+        sol += supply[rowIndex] * transTable[rowIndex][colIndex]
+        print("%d * %d"%(supply[rowIndex],transTable[rowIndex][colIndex]))
+        demand[colIndex] -= supply[rowIndex]
+        supply.pop(rowIndex)
+        opTable.pop(rowIndex)
+print("Initial feasible solution is %d"%sol)
