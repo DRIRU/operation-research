@@ -85,5 +85,5 @@ def findMin(tab):
     for i in range(len(tab)):
         for j in range(len(tab[0])):
             if tab[i][j] < minValue and tab[i][j] != 0:
-                minValue, minRowIndex, minColIndex = i, j, tab[i][j]
+                minValue, minRowIndex, minColIndex = tab[i][j], i, j
     return minValue, minRowIndex, minColIndex
