@@ -27,14 +27,13 @@ print("Enter the demand values: ")
 demand = []
 for i in range(c):
     demand.append(int(input()))
-
+    
 if sum(supply) != sum(demand):
     if(sum(supply) > sum(demand)):
         demand.append(sum(supply)-sum(demand))
         for i in range(r):
             transTable[i].append(0)
         c += 1
-        
     else:
         supply.append(sum(demand)-sum(supply))
         row = []
