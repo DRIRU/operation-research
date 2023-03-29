@@ -34,7 +34,6 @@ if sum(supply) != sum(demand):
 i=0
 j=0
 sol = 0
-
 while i != r and j != c:
     if supply[i] == demand[j]:
         sol += demand[j] * transTable[i][j]
@@ -54,4 +53,4 @@ while i != r and j != c:
         demand[j] -= supply[i]
         supply[i] = 0
         i += 1
-print (sol)
+print("Initial feasible solution is %d"%sol)
