@@ -70,8 +70,4 @@ while True:
         demand[minCol] -= supply[minRow]
         supply.pop(minRow)
         opTable.pop(minRow)
-        
-
-    print(supply)
-    print(demand)
 print (sol)
