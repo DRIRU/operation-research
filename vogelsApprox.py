@@ -23,8 +23,8 @@ def findIndex(row, col, tb):
     else:
         j = col.index(max(col))
         i = 0
-        mini = tab[i][j]
-        for n in range(len()): 
+        mini = tb[i][j]
+        for n in range(len(tb)): 
             if tb[n][j] < mini:
                 mini = tb[n][j]
                 i = n
@@ -52,23 +52,24 @@ for i in range(c):
 if sum(supply) != sum(demand):
     if(sum(supply) > sum(demand)):
         demand.append(sum(supply)-sum(demand))
-        for i in range(r):
+        for i in range(len(transTable)):
             transTable[i].append(0)
-        c += 1
-        
     else:
         supply.append(sum(demand)-sum(supply))
         row = []
-        for i in range(c):
+        for i in range(len(transTable[0])):
             row.append(0)
         transTable.append(row)
-        r += 1
 opTable, sol = transTable, 0
 while True:
     if len(opTable) == 0:
         break
-    rowPen, colPen = setPenalty(opTable)
-    rowIndex, colIndex = findIndex(rowPen, colPen, opTable)
+    if len(opTable) >= 2 or len(opTable[0]) >= 2: 
+        rowPen, colPen = setPenalty(opTable)
+        rowIndex, colIndex = findIndex(rowPen, colPen, opTable)
+    else:
+        rowIndex = 0
+        colIndex = 0
     if supply[rowIndex] == demand[colIndex]:
         sol += demand[colIndex] * transTable[rowIndex][colIndex]
         print("%d * %d"%(demand[colIndex],transTable[rowIndex][colIndex]))
