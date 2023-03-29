@@ -69,4 +69,4 @@ while True:
         demand[minCol] -= supply[minRow]
         supply.pop(minRow)
         opTable.pop(minRow)
-print (sol)
+print("Initial feasible solution is %d"%sol)
