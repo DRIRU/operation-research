@@ -17,6 +17,8 @@ def setPenalty(tb):
     return rowPen, colPen
 
 def findIndex(row, col, tb):
+    if len(tb) < 2 or len(tb[0]) < 2:
+        
     if max(row) >= max(col):
         i = row.index(max(row))
         j = row.index(min(tb[i]))
