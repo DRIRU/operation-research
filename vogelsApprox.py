@@ -40,18 +40,27 @@ def findMinRowIndex(tb, j):
 def findIndex(row, col, tb):
     if len(tb) < 2 or len(tb[0]) < 2:
         if len(tb) < 2:
-            print(tb)
             i = 0
-            j = findMinColIndex(tb, i)
+            j = tb[i].index(min(tb[i]))
         else:
             j = 0
-            i = findMinRowIndex(tb, j)
+            i = 0
+            mini = tb[0][0]
+            for n in range(len(tb)):
+                if tb[n][j] < mini:
+                    mini = tb[n][j]
+                    i = n
     elif max(row) >= max(col):
         i = row.index(max(row))
-        j = findMinColIndex(tb, i)
+        j = tb[i].index(min(tb[i]))
     else:
         j = col.index(max(col))
-        i = findMinRowIndex(tb, j)
+        i = 0
+        mini = tb[i][j]
+        for n in range(len(tb)): 
+            if tb[n][j] < mini:
+                mini = tb[n][j]
+                i = n
     return i, j
 
 r = int(input("Enter Row and Column size of Transportation table: "))
