@@ -14,8 +14,6 @@ def get_input():
     for i in range(m):
         for j in range(n):
             costs[i][j] = int(input("Cost for supplier {} and customer {}: ".format(i+1, j+1)))
-    print(np.sum(supply))
-    print(np.sum(demand))
     if np.sum(supply) != np.sum(demand):
         if np.sum(demand) > np.sum(supply):
             val = np.sum(demand) - np.sum(demand)
@@ -31,9 +29,6 @@ def get_input():
             row = np.zeros((n,1))
             costs = np.append(costs, row, axis = 1)
             n += 1
-        print(supply)
-        print(demand)
-        print(costs)
     return supply, demand, costs, m, n
 def findMin(tab):
     minValue = 1000
@@ -52,8 +47,7 @@ def northwest_corner(supply, demand, m, n, costs):
     while i < m and j < n:
         min_val = min(supply[i], demand[j])
         allocation[i][j] = min_val
-        supply[i] -= min_val
-        demand[j] -= min_val
+        supply[i], demand[j] =  supply[i] - min_val, demand[j] - min_val
         if supply[i] == 0:
             i += 1
         if demand[j] == 0:
@@ -84,15 +78,14 @@ def least_cost1(supply, demand, costs):
     return total_cost
 
 def main():
-    supply, demand, costs, m, n = get_input()
-    print("Enter the cost matrix:")
-    
     while True:
         print("\nTransportation Problem Solver")
         print("1. Solve using Northwest Corner Method")
         print("2. Solve using Least Cost Method")
         print("3. Quit")
         choice = int(input("Enter choice: "))
+        supply, demand, costs, m, n = get_input()
+        print("Enter the cost matrix:")
         if choice == 1:
             total_cost = northwest_corner(supply, demand, m, n, costs)
             print("Total Cost: ", total_cost)
