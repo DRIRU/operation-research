@@ -1,3 +1,4 @@
+//does not check if the problem is balanced
 #include <iostream>
 #include <climits>
 
