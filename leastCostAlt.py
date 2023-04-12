@@ -16,7 +16,7 @@ def get_input():
             costs[i][j] = int(input("Cost for supplier {} and customer {}: ".format(i+1, j+1)))
     if np.sum(supply) != np.sum(demand):
         if np.sum(demand) > np.sum(supply):
-            val = np.sum(demand) - np.sum(demand)
+            val = np.sum(demand) - np.sum(supply)
             supply = np.append(supply, [val],  axis = 0)
             row = np.zeros((1, m))
             costs = np.append(costs, row, axis = 0)
