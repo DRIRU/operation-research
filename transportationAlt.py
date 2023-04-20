@@ -31,11 +31,11 @@ def get_input():
             n += 1
     return supply, demand, costs, m, n
 def findMin(tab):
-    minValue = 1000
+    minValue = 10000
     minColIndex = minRowIndex = 0
     for i in range(len(tab)):
         for j in range(len(tab[0])):
-            if tab[i][j] < minValue and tab[i][j] != 0:
+            if tab[i][j] < minValue:
                 minValue = tab[i][j]
                 minRowIndex = i
                 minColIndex = j
@@ -84,6 +84,8 @@ def main():
         print("2. Solve using Least Cost Method")
         print("3. Quit")
         choice = int(input("Enter choice: "))
+        if choice == 3:
+            exit()
         supply, demand, costs, m, n = get_input()
         print("Enter the cost matrix:")
         if choice == 1:
@@ -92,9 +94,6 @@ def main():
         elif choice == 2:
             total_cost = least_cost1(supply, demand, costs)
             print("Total Cost: ", total_cost)
-        elif choice == 3:
-            print("Exiting program...")
-            break
         else:
             print("Invalid choice. Please try again.")
 main()
