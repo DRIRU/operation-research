@@ -18,7 +18,7 @@ def get_input():
         if np.sum(demand) > np.sum(supply):
             val = np.sum(demand) - np.sum(supply)
             supply = np.append(supply, [val],  axis = 0)
-            row = np.zeros((1, m))
+            row = np.zeros((1, n))
             costs = np.append(costs, row, axis = 0)
            
             m += 1
@@ -26,7 +26,7 @@ def get_input():
         else:
             val =  np.sum(supply) - np.sum(demand)
             demand = np.append(demand, [val],  axis = 0)
-            row = np.zeros((n,1))
+            row = np.zeros((m,1))
             costs = np.append(costs, row, axis = 1)
             n += 1
     return supply, demand, costs, m, n
